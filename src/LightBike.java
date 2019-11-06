@@ -6,19 +6,18 @@ import java.util.ArrayList;
 
 public class LightBike extends Rectangle {
 
-    private ArrayList<Rectangle> trails = new ArrayList<>();
-    private int velocity = 15, xPos, yPos, trailIndex = 0;
-
-    private int playerNumber;
+    public ArrayList<Rectangle> trails = new ArrayList<>();
+    private int velocity = 15, xPos, yPos;
     private Direction currentDirection;
     Color color;
 
     public LightBike(int spawn_x, int spawn_y, Color color, int playerNumber){
-        super(spawn_x, spawn_y, 50, 50);
+        super(spawn_x, spawn_y, 12, 12);
         xPos = spawn_x;
         yPos = spawn_y;
         this.color = color;
-        this.playerNumber = playerNumber;
+
+        trails.add(new Rectangle(spawn_x, spawn_y, 12, 12));
 
         this.currentDirection = Direction.RIGHT;
     }
@@ -54,6 +53,7 @@ public class LightBike extends Rectangle {
     void turn(Direction newDirection){
         if (isTurnable(newDirection)) {
             currentDirection = newDirection;
+            trails.add(0, new Rectangle(xPos, yPos, 12, 12));
         }
     }
 
@@ -75,15 +75,21 @@ public class LightBike extends Rectangle {
         switch (currentDirection){
             case UP:
                 yPos -= velocity;
+                trails.get(0).y -= velocity;
+                trails.get(0).height += velocity;
                 break;
             case DOWN:
                 yPos += velocity;
+                trails.get(0).height += velocity;
                 break;
             case LEFT:
                 xPos -= velocity;
+                trails.get(0).x -= velocity;
+                trails.get(0).width += velocity;
                 break;
             case RIGHT:
                 xPos += velocity;
+                trails.get(0).width += velocity;
                 break;
         }
     }

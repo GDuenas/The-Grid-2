@@ -1,3 +1,5 @@
+import org.w3c.dom.css.Rect;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -108,7 +110,7 @@ public class GamePanel extends JPanel implements ActionListener, Runnable {
 
         Color stripe = new Color(0, 165, 161);
         g.setColor(stripe);
-        int divider = 15;
+        int divider = 20;
         for(int i = 0; i < divider; i++){
             g.drawLine(width/divider + (width/divider)*i, 0, width/divider + (width/divider)*i, height);
             g.drawLine(0, width/divider + (width/divider)*i, width, width/divider + (width/divider)*i);
@@ -116,8 +118,12 @@ public class GamePanel extends JPanel implements ActionListener, Runnable {
 
         for(int i = 0; i < bikeList.size(); i++){
             LightBike currentBike = bikeList.get(i);
+            ArrayList<Rectangle> trails = currentBike.trails;
             g.setColor(currentBike.getColor());
             g.fillRect(currentBike.getPosX(), currentBike.getPosY(), currentBike.width, currentBike.height);
+            for (int j = 0; j < currentBike.trails.size(); j++){
+                g.fillRect(trails.get(j).x, trails.get(j).y, trails.get(j).width, trails.get(j).height);
+            }
         }
 
     }
