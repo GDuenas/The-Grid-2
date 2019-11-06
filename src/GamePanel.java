@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements ActionListener, Runnable {
 
-    Timer tm = new Timer(1, this);
+    Timer tm = new Timer(15, this);
     private int width, height;
     private ArrayList<LightBike> bikeList = new ArrayList<>();
 
@@ -43,49 +43,49 @@ public class GamePanel extends JPanel implements ActionListener, Runnable {
         ap.put("Face Up One", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(0).turn(LightBike.DIRECTION_UP);
+                bikeList.get(0).turn(Direction.UP);
             }
         });
         ap.put("Face Down One", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(0).turn(LightBike.DIRECTION_DOWN);
+                bikeList.get(0).turn(Direction.DOWN);
             }
         });
         ap.put("Face Right One", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(0).turn(LightBike.DIRECTION_RIGHT);
+                bikeList.get(0).turn(Direction.RIGHT);
             }
         });
         ap.put("Face Left One", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(0).turn(LightBike.DIRECTION_LEFT);
+                bikeList.get(0).turn(Direction.LEFT);
             }
         });
         ap.put("Face Up Two", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(1).turn(LightBike.DIRECTION_UP);
+                bikeList.get(1).turn(Direction.UP);
             }
         });
         ap.put("Face Down Two", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(1).turn(LightBike.DIRECTION_DOWN);
+                bikeList.get(1).turn(Direction.DOWN);
             }
         });
         ap.put("Face Right Two", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(1).turn(LightBike.DIRECTION_RIGHT);
+                bikeList.get(1).turn(Direction.RIGHT);
             }
         });
         ap.put("Face Left Two", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bikeList.get(1).turn(LightBike.DIRECTION_LEFT);
+                bikeList.get(1).turn(Direction.LEFT);
             }
         });
 

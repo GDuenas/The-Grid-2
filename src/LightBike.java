@@ -7,10 +7,10 @@ import java.util.ArrayList;
 public class LightBike extends Rectangle {
 
     private ArrayList<Rectangle> trails = new ArrayList<>();
-    private int velocity = 5, xPos, yPos;
+    private int velocity = 15, xPos, yPos, trailIndex = 0;
 
-    public static final int DIRECTION_UP = 0, DIRECTION_DOWN = 1, DIRECTION_LEFT = 2, DIRECTION_RIGHT = 3;
-    private int currentDirection, playerNumber;
+    private int playerNumber;
+    private Direction currentDirection;
     Color color;
 
     public LightBike(int spawn_x, int spawn_y, Color color, int playerNumber){
@@ -20,7 +20,7 @@ public class LightBike extends Rectangle {
         this.color = color;
         this.playerNumber = playerNumber;
 
-        this.currentDirection = DIRECTION_RIGHT;
+        this.currentDirection = Direction.RIGHT;
     }
 
     Color getColor(){
@@ -51,22 +51,38 @@ public class LightBike extends Rectangle {
         yPos = newY;
     }
 
-    void turn(int newDirection){
-        currentDirection = newDirection;
+    void turn(Direction newDirection){
+        if (isTurnable(newDirection)) {
+            currentDirection = newDirection;
+        }
+    }
+
+    private boolean isTurnable(Direction newDirection){
+        switch (newDirection){
+            case UP:
+                return !(currentDirection == Direction.DOWN);
+            case DOWN:
+                return !(currentDirection == Direction.UP);
+            case LEFT:
+                return !(currentDirection == Direction.RIGHT);
+            case RIGHT:
+                return !(currentDirection == Direction.LEFT);
+        }
+        return false;
     }
 
     void accelerate(){
         switch (currentDirection){
-            case DIRECTION_UP:
+            case UP:
                 yPos -= velocity;
                 break;
-            case DIRECTION_DOWN:
+            case DOWN:
                 yPos += velocity;
                 break;
-            case DIRECTION_LEFT:
+            case LEFT:
                 xPos -= velocity;
                 break;
-            case DIRECTION_RIGHT:
+            case RIGHT:
                 xPos += velocity;
                 break;
         }
